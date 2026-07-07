@@ -1,0 +1,121 @@
+---
+name: channel-signal-digest
+description: Scan any set of channels for one class of signal daily, with the exclusion list that keeps the digest worth reading. Use for product-issue scanning, competitor mentions, customer risk - any "read everything so I don't have to" job.
+---
+
+# Channel Signal Digest
+
+A daily digest that scans every channel for ONE class of signal. Sanitized
+from a production daily product-issue scan whose secret is not what it
+catches but what it deliberately ignores.
+
+## The core rule: the OUT-of-scope list is the product
+
+Any classifier can find mentions. What keeps a digest alive past week two is
+the explicit exclusion list - the things that LOOK like signal, would each be
+defensible to include, and would collectively make the digest unreadable.
+The production system's list, as an example (scanning for product issues):
+
+- Infrastructure noise (deploy notifications, transient alerts that auto-resolved)
+- Configuration/setup issues (real, but routed to onboarding, not product)
+- Known platform latency (already tracked; re-reporting daily is noise)
+
+Write YOUR exclusion list before the first scan. Rule of thumb: 3-6 exclusions,
+each naming a category someone would otherwise argue belongs in.
+
+## Digest discipline
+
+- **One signal class per digest.** "Product issues AND competitor mentions AND
+  churn risk" = three digests. Merged digests get skimmed; single-class digests
+  get acted on.
+- **Cap at 10 items.** Past 10, the classifier bar is too low or the scan
+  window too wide. An empty digest ships as "nothing found - N messages
+  scanned" - silence and system-down are different states, and the reader
+  must be able to tell them apart.
+- **Every item: quote + link + channel + one-line why-it-matters.** No
+  paraphrase-only items; the quote is the evidence, the link is the audit trail.
+
+## If/then
+
+- If an excluded-category item keeps appearing (5+ times/week) -> don't add it
+  to the digest; flag ONCE to the owner of that category ("config issues
+  spiking - onboarding may have a gap").
+- If the same underlying issue appears in 3+ channels -> collapse to one item
+  with a channel count; three duplicate items make the digest read stale.
+- If a digest item gets no reaction/action 3 days running while new instances
+  keep appearing -> escalate that one item directly to the owner; the digest
+  has done its job of noticing, now do the job of insisting.
+- If scan volume doubles week-over-week -> re-check the exclusion list before
+  celebrating growth; usually a new noise source arrived.
+
+## Escalation
+
+- Anything matching your severity words (data loss, security, outage,
+  legal threat) -> immediate direct notification, never held for the daily
+  digest. The digest is a batch process; emergencies aren't batch.
+- Two consecutive empty digests when channels ARE active -> audit the
+  classifier with 20 random messages; silent misclassification is worse
+  than noise because nobody notices it.
+
+## Worked example
+
+8:00 AM scan for product issues: 412 messages across 9 customer channels in
+24h. Classifier surfaces 14 candidates. Exclusions remove 6: 2 deploy
+notifications (infra), 3 setup questions (routed onboarding), 1 known-latency
+grumble. Duplicate-collapse merges 3 reports of the same export bug into one
+item (3 channels, count shown). Digest ships with 6 items, each quote+link+why.
+Item 4 (export bug) is day 3 with no owner reaction and new instances -> broken
+out and sent directly to the product owner with all three quotes. One item
+matched "lost data" at 6:40 AM - that one never waited for the digest;
+direct page at 6:42.
+
+## Definition of done
+
+- [ ] Exclusion list exists in writing and was applied (count what it removed)
+- [ ] One signal class; <=10 items; duplicates collapsed with counts
+- [ ] Every item has quote + link + why-it-matters
+- [ ] Empty digest explicitly says N-scanned, zero-found
+- [ ] Severity matches bypassed the batch and paged directly
+
+## Anti-patterns
+
+- **The everything-digest.** Merging signal classes to "save a digest" is how
+  you get a daily email everyone filters. One class, one digest, one owner
+  who cares about exactly that class.
+- **Paraphrase-only items.** "Someone complained about exports" - who, where,
+  in what words? Unquoted items can't be triaged, disputed, or acted on;
+  they can only be worried about.
+- **Silently empty digests.** A digest that just doesn't arrive when nothing
+  is found is indistinguishable from a broken scanner. "0 found / 412
+  scanned" is one line and preserves all the trust.
+- **Growing the digest instead of defending the bar.** Every reader request
+  to "also include X" is a fork decision: new digest class, or exclusion-list
+  entry. "Just add it to this one" is the option that kills the digest.
+
+## Setup (first run, ~30 minutes)
+
+1. Name the ONE signal class and its owner (the person who acts on items).
+2. Write the exclusion list - 3-6 categories. Fastest method: scan yesterday
+   manually, list everything you'd exclude, name the categories.
+3. Define severity words for the bypass path and where the bypass goes
+   (page, DM, phone - not email).
+4. Set the scan window and delivery time so the digest lands before the
+   owner's working block, not after.
+5. Run 3 days manually before automating. Your exclusion list will double.
+   That's the setup working.
+
+## Classifier calibration (weekly, 10 minutes)
+
+Sample 20 scanned-but-excluded messages. Count false negatives (should have
+surfaced). One is fine; three means a category in your exclusion list is
+too wide - split it. Also sample the surfaced items' reactions: items that
+consistently get no action are either below the bar (raise it) or reaching
+the wrong owner (re-route). The digest is a product; this is its retention metric.
+
+## Swappable parameters
+
+- Signal class: product issues -> competitor mentions / churn language / praise worth amplifying
+- Exclusion list: the 3 above -> YOUR 3-6 categories
+- Cap: `10 items` -> your reading budget
+- Insistence trigger: `3 days ignored + recurring` -> your patience
+- Severity words -> your emergency vocabulary

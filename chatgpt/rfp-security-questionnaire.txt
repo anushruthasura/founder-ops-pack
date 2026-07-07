@@ -1,0 +1,128 @@
+# RFP / Security Questionnaire
+
+Security-questionnaire operations, sanitized from a production sales-
+engineering practice built around one inversion: the questionnaire is a
+retrieval problem, not a writing problem.
+
+## Rule 1: KB-first answering
+
+Maintain a master FAQ - the production system's holds ~26 canonical
+questions - covering the questions that actually recur: hosting and data
+residency, encryption at rest/in transit, access control and SSO, audit
+certifications (SOC 2 etc.), subprocessors, retention and deletion,
+incident response, BCP/DR, pen-test cadence, vulnerability management.
+Every new questionnaire is answered BY RETRIEVAL first: match each incoming
+question to a canonical answer, adapt phrasing, done. In practice the
+master FAQ covers 80-90% of any questionnaire; the remaining 10-20% get
+written fresh AND evaluated for promotion into the FAQ (if a question
+recurs twice, it's canonical now). The FAQ has one owner; answers carry a
+last-verified date, re-verified quarterly - a stale answer in a security
+review is worse than no answer, because it's discoverable as wrong.
+
+## Rule 2: the decline threshold
+
+Not every questionnaire deserves the hours. The production rule: below
+$50K ARR potential, decline the CUSTOM questionnaire and send the standard
+security packet (public certs + master FAQ export + trust-center link)
+instead. Most sub-threshold requesters accept the packet happily - the
+questionnaire was their process default, not their requirement. The
+threshold converts "we spent 6 hours on a $15K deal's spreadsheet" from
+a recurring accident into a policy decision someone actually made.
+
+## Rule 3: NDA-gated evidence routing
+
+Every piece of security evidence is classified into a routing tier, decided
+once, not per-deal under pressure:
+
+| Tier | Examples | Gate |
+|---|---|---|
+| Public | cert badges, high-level architecture, subprocessor list | none - link freely |
+| NDA | SOC 2 report, pen-test executive summary, DR test results | signed NDA on file, verified before send |
+| Never-send | full pen-test findings, internal runbooks, incident postmortems | summarize under NDA; originals do not leave |
+
+The tier table means the account team never improvises disclosure at
+11 PM before a deadline - which is exactly when the full pen-test report
+gets attached to an email "just to be helpful."
+
+## If/then
+
+- If a question has no KB match and smells one-off -> answer fresh, tag it;
+  second occurrence promotes it to the master FAQ.
+- If a question asks for never-send material -> respond with the NDA-tier
+  summary and a call offer; a walkthrough closes the concern faster than
+  a document that then lives in their vendor folder forever.
+- If the deadline is under 5 business days and the questionnaire is 100+
+  questions -> negotiate scope first ("here's our packet covering 80% -
+  which remaining sections are decision-critical?"). Full-speed on an
+  unscoped questionnaire is how errors ship.
+- If an answer would be aspirational ("we're rolling that out") -> write
+  the truthful current state + dated roadmap note. Aspirational answers in
+  security reviews become contract exhibits.
+
+## Escalation
+
+- Any question about a past incident, ongoing vulnerability, or legal
+  matter -> security/legal owner reviews the answer before send, no
+  exceptions, regardless of deadline.
+- Same "missing" control asked by 3+ prospects in a quarter -> that's a
+  roadmap signal with revenue attached; brief the security owner with
+  the deal list.
+
+## Worked example
+
+Tuesday: 140-question questionnaire lands, enterprise prospect, ~$150K ARR
+potential (clears the $50K bar - proceed), deadline 10 business days.
+Retrieval pass, 2.5 hours: 118 questions matched to the master FAQ (84%),
+phrasing adapted. 22 remain: 14 written fresh (2 look recurring - tagged
+for promotion); 5 request the SOC 2 report -> NDA check: on file, verified,
+sent with expiring link; 3 ask for detailed pen-test findings -> never-send
+tier: NDA summary attached + walkthrough call offered (they take the call;
+concern closed in 25 minutes). One question about a 2024 incident ->
+security owner reviews the answer before send. Delivered day 7 of 10.
+Same week, a $20K-potential prospect sends a 90-question sheet -> declined
+per threshold, standard packet sent - accepted without complaint, 6 hours
+saved. The FAQ gains 2 questions; quarterly re-verification is 3 weeks out.
+
+## Definition of done
+
+- [ ] Retrieval pass done before any fresh writing; coverage % noted
+- [ ] Fresh answers tagged; recurring ones promoted to the master FAQ
+- [ ] Every evidence send matched its tier; NDA verified before NDA-tier sends
+- [ ] Nothing aspirational shipped as current state
+- [ ] Incident/vulnerability/legal answers reviewed by the owner
+- [ ] Sub-threshold requests got the packet, not the hours
+
+## Anti-patterns
+
+- **Writing from scratch under deadline.** Fresh-writing 140 answers at
+  11 PM produces contradictions with the last questionnaire you sent -
+  and security reviewers at big prospects DO diff vendors' answers over time.
+- **The heroic yes.** Answering every custom questionnaire regardless of deal
+  size feels customer-obsessed and is actually a subsidy from your biggest
+  deals to your smallest. The threshold is the honest version.
+- **Disclosure improvisation.** Deciding at send-time what the prospect can
+  see guarantees the one 11 PM mistake that matters. The tier table is
+  boring; boring is the point.
+- **Aspirational answers.** "We're SOC 2 compliant" (report in progress)
+  reads as a lie in month 11 of the contract when the auditor asks for the
+  report dated before signature.
+
+## Setup (first run, ~half a day - amortizes forever)
+
+1. Pull your last 3-5 completed questionnaires; every question asked twice
+   goes into the master FAQ draft. You'll land near 20-30 canonical answers.
+2. Assign the FAQ owner and stamp every answer with last-verified + source
+   (who confirmed it).
+3. Build the evidence tier table with security/legal in the room - one
+   meeting, decided once.
+4. Assemble the standard packet (public tier + FAQ export + trust links)
+   so the decline path is one email.
+5. Set the ARR threshold with sales leadership so the decline is POLICY,
+   not the SE's personal courage every time.
+
+## Swappable parameters
+
+- Decline threshold: `$50K ARR` -> your sales-engineering cost per questionnaire
+- Master FAQ size: `~26 questions` -> grows by the promotion rule, not by decree
+- Re-verification: quarterly -> your compliance cadence
+- Rush bar: `<5 days for 100+ questions` -> your team's honest throughput

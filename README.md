@@ -149,6 +149,24 @@ skills we would run ourselves.
   they're linked in [CURATED.md](CURATED.md) with context on why they're worth
   using. The link is the curation.
 
+### What code ships in curated/ (security note)
+
+Exactly one curated skill ships executable code: `brainstorming` (from obra) —
+four scripts under `curated/obra/brainstorming/scripts/` (`helper.js`,
+`server.cjs`, `start-server.sh`, `stop-server.sh`) that run a **local-only**
+web server for its optional visual companion. We read every line before
+vendoring. What we verified: **zero outbound network calls** anywhere; the
+server binds `127.0.0.1` by default; file writes are confined to its own
+session directory (`/tmp/brainstorm` or an explicit `--project-dir`);
+`child_process` is used only to open your browser, opt-in and via `execFile`
+(no shell); access is token-gated with owner-only file permissions; and the
+stop script refuses to kill processes it can't verify it started. Every other
+curated skill is markdown/JSON only — no executable code.
+
+Standard skills hygiene still applies: **read the scripts yourself before
+running any skill that ships them** — here or anywhere else. When we pull
+updates from upstream, the code gets re-reviewed before the update lands.
+
 ### Curated Skills (Vendored with Attribution)
 
 | Skill | What it replaces / encodes | Who it's for | Tier | Source |
@@ -169,9 +187,13 @@ skills we would run ourselves.
 
 ## Quality bar
 
-Every skill in this pack has: specific numbers and thresholds, an if/then
-decision framework, escalation logic, one worked example with real math, and
-a validation section (definition of done). Utility skills are small but
-sharp — one pattern, still with a number, a rule, an example, and a
-validation step. If anything ever reads like generic AI advice, file an
-issue — that's a bug.
+Every skill under `skills/` — the ones we wrote — has: specific numbers and
+thresholds, an if/then decision framework, escalation logic, one worked
+example with real math, and a validation section (definition of done).
+Utility skills are small but sharp — one pattern, still with a number, a
+rule, an example, and a validation step. If anything under `skills/` ever
+reads like generic AI advice, file an issue — that's a bug.
+
+Curated skills were selected on the same taste bar — we only include what
+we'd run ourselves — but they are their authors' work. We vouch for the
+selection; the authors own the content.

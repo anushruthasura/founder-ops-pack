@@ -1,0 +1,126 @@
+# Engagement Health Classifier
+
+CSM book-of-business review as a classifier, sanitized from a production
+customer-success tracker. Two design decisions do all the work: exactly
+three states, and matching that catches what naive joins miss.
+
+## Rule 1: three states, because three forces a decision
+
+- **Healthy** - engaged and trending flat-or-up. Action: nothing. (A state
+  whose action is "nothing" is what makes the other two states actionable.)
+- **Soft Nudge** - alive but cooling. Action: one light, personal, non-salesy
+  touch within the week.
+- **Reengage** - signal lost. Action: a deliberate re-engagement play with an
+  owner and a date - not another newsletter.
+
+Five-state models and 0-100 health scores produce discussion; three states
+produce a to-do list. If you're debating between two adjacent states for
+more than a minute, pick the worse one (ties break toward action).
+
+## Rule 2: 3-way meeting-to-account matching
+
+Meetings are your richest engagement signal, and the easiest to lose:
+attendees use personal emails constantly. Match calendar meetings to
+accounts three ways, taking any hit:
+
+1. **Owner domain** - any attendee's email domain matches the account domain.
+2. **Name token** - account name (or a known alias) appears in the meeting
+   title or description.
+3. **Attendee membership** - an attendee is already a known contact of the
+   account, regardless of the address they used today.
+
+Match 3 is the one that pays: the champion who books from gmail is EXACTLY
+the meeting you can't afford to count as no-meeting. In production, adding
+matches 2+3 reclassified accounts from Reengage to Healthy - accounts that
+were being nudged while actively meeting with us.
+
+## Rule 3: the honest trend is 7d vs prior 7d
+
+Usage trend = rolling last-7-days vs the 7 days before that. Not month-over-
+month (too slow to catch a cliff), not day-over-day (all noise). The 7v7
+comparison is the shortest window that survives weekends and the longest
+one that still catches a cooling account before it's cold.
+
+## Classification logic
+
+For each engagement, gather: meetings (3-way matched, last 14 days),
+usage 7v7 trend, last genuine human contact (reply/call - not opens).
+Then: recent meeting OR rising usage -> **Healthy**. No meeting in 14d but
+usage flat and a human contact in 21d -> **Soft Nudge**. Usage falling
+(>30% drop 7v7) OR no human contact in 21+ days -> **Reengage**, regardless
+of anything else looking fine.
+
+## If/then
+
+- If states disagree with your gut -> the data is missing a source (usually
+  a support thread or a champion's personal-email meeting). Fix the matching,
+  don't override the state; overrides are how classifiers become decoration.
+- If an account sits in Soft Nudge 3 consecutive runs -> it's not soft
+  anymore; promote to Reengage. Soft Nudge is a transit state, not a home.
+- If a Reengage play gets no response in 14 days -> escalate to owner with
+  the full timeline; silence after a deliberate play is churn talking.
+- If >30% of the book is Reengage -> the problem is upstream (onboarding,
+  product, pricing), not the CSM motion. Escalate the pattern, not 30 accounts.
+
+## Escalation
+
+- Healthy -> Reengage in a single run (skipping Soft Nudge) -> same-day owner
+  alert: cliffs have causes (champion left, budget cut, incident) and the
+  first 48 hours are when asking still works.
+- Any account with an open renewal inside 90 days classified Reengage ->
+  standing weekly review until resolved.
+
+## Worked example
+
+Monday run, 24 accounts. Acme: no owner-domain meetings in 14d - but match 3
+catches Thursday's "sync w/ Dave" booked from dave.k@gmail.com (Dave is a
+known Acme contact). Usage 7v7: +12%. -> Healthy (was headed for Reengage
+under naive matching; this is the 3-way match paying rent). BetaCo: usage
+7v7 -34%, last human contact 26 days -> Reengage; play assigned (owner: you;
+"champion check-in call, not email"; due Wed). Gamma: flat usage, no meetings,
+human reply 11 days ago -> Soft Nudge, third consecutive -> promoted to
+Reengage per the transit rule. Output: 17 Healthy (untouched), 4 Soft Nudge
+(one personal touch each), 3 Reengage (each with play + owner + date).
+Review took 20 minutes and produced 7 actions.
+
+## Definition of done
+
+- [ ] Every account in exactly one state; no "watch" pile, no overrides
+- [ ] Meeting matching ran all 3 ways; personal-email meetings counted
+- [ ] Trend is 7d vs prior 7d from genuine usage (auto-noise excluded)
+- [ ] Every Soft Nudge has a touch; every Reengage has play + owner + date
+- [ ] State changes since last run reviewed, cliffs escalated same-day
+
+## Anti-patterns
+
+- **The "watch list" fourth state.** Watch is where decisions go to hide.
+  Every account you'd put on watch is a Soft Nudge (do the touch) or a
+  Reengage (run the play). The third state you actually need is "Healthy -
+  do nothing", and it takes discipline to leave it alone.
+- **Health scores with decimals.** A 67 vs a 71 produces a conversation about
+  the model. Three states produce a conversation about the customer.
+- **Owner-domain-only matching.** The naive join undercounts engagement for
+  exactly your most engaged humans (champions book from phones and personal
+  accounts). If your Reengage list contains an account you talked to this
+  week, your matching is broken - fix it before trusting anything else.
+- **Manual state overrides.** Overriding states without fixing the underlying
+  data source turns the classifier into decoration within a month.
+
+## Setup (first run, ~45 minutes)
+
+1. List accounts with: domain(s), known contacts (name + all known emails),
+   aliases/nicknames for the name-token match.
+2. Wire the three signals: calendar (14d window), usage (7v7), last human
+   contact (21d). Missing one? Run with two and say so on the output -
+   a classifier with named gaps beats one with silent ones.
+3. Run once, then hand-audit the 5 most surprising classifications. Each
+   surprise is a matching gap or a missing source; fix, re-run.
+4. Book the recurring run + the 20-minute action review as one calendar
+   block. The classification is worthless without the actions half.
+
+## Swappable parameters
+
+- Windows: meetings `14d`, human contact `21d`, cliff `>30% 7v7` -> your product's tempo
+- Soft-Nudge transit: `3 runs` -> your cadence
+- Book-level alarm: `>30% Reengage` -> your baseline
+- Cadence: weekly -> your book size (daily above ~50 accounts changes nothing but noise)
