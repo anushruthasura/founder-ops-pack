@@ -1,0 +1,135 @@
+---
+name: metric-dictionary
+description: >
+  Maintain a single dictionary that defines every metric your company uses —
+  owner, formula, source, and edge cases per metric — so that no two people
+  ever present different numbers for the same thing. Use when defining a new
+  metric, resolving a numbers dispute, onboarding someone to reporting, or
+  auditing why two dashboards disagree. Trigger keywords: metric definition,
+  source of truth, numbers don't match, KPI dictionary, data dictionary,
+  what does this metric mean.
+---
+
+# Metric Dictionary
+
+Every company eventually has the meeting where two people present different
+numbers for "active users" and spend twenty minutes discovering they were
+both right — by different definitions. The fix is not a better dashboard.
+It is a **dictionary**: one entry per metric, and a discipline that makes
+the dictionary the arbiter instead of whoever argues loudest.
+
+The core insight this skill encodes: **a metric dictionary is a memory
+system, not a document.** It only works if corrections flow INTO it — every
+time a definition dispute is resolved, the resolution becomes a permanent
+edge-case note in the entry. A dictionary that doesn't absorb corrections
+is re-litigating the same disputes quarterly.
+
+## The entry format — four required fields, no exceptions
+
+Every metric gets one entry with ALL four fields. An entry missing any
+field is a draft, and draft metrics do not appear in reporting.
+
+| Field | What it must contain | Failure mode it prevents |
+|---|---|---|
+| **Owner** | ONE named person who arbitrates disputes about this metric | "Nobody knows who decides" |
+| **Formula** | The exact computation, in words AND in query/pseudocode | "Active means... you know, active" |
+| **Source** | The specific system + table/report the number comes from | Two dashboards, two sources, two numbers |
+| **Edge cases** | Running list of resolved ambiguities, dated | Re-litigating the same dispute |
+
+Two rules on top of the format:
+
+1. **One owner, not a committee.** The owner doesn't compute the metric —
+   they arbitrate its definition. When two teams disagree, the owner
+   decides within 2 business days and the decision is written into the
+   edge-cases list. If a metric has no obvious owner, it's usually two
+   metrics wearing one name — split it.
+
+2. **Corrections become permanent definitions.** When someone catches a
+   discrepancy ("your churn number includes the test accounts"), the fix
+   is never just correcting this month's report. The exclusion gets a
+   dated bullet in the entry's edge cases, and the formula is updated.
+   The dispute should be impossible to have twice.
+
+## Naming discipline
+
+- If two teams use the same word for different computations, neither keeps
+  the bare name. Rename both with a scope suffix — `Active Users (product)`
+  vs `Active Users (billing)` — and add a stub entry under the bare name
+  pointing to both. Never let the ambiguous name stay in circulation.
+- Aliases are recorded in the entry. If sales says "logos" and the
+  dictionary says "customer count", the entry for customer count lists
+  "logos" as an alias — so a search for either finds the same definition.
+
+## Cadence and staleness
+
+- **New metric**: no metric appears in a recurring report until its entry
+  is complete (all four fields). This is the forcing function — reporting
+  privileges are how you get people to write entries.
+- **Quarterly review**: the owner of each metric re-verifies formula and
+  source once a quarter. Each entry carries a `last-verified` date; an
+  entry not verified in **180 days** is flagged stale, and stale metrics
+  get a warning marker anywhere they're reported.
+- **Dispute SLA**: definition disputes resolve within **2 business days**
+  or escalate to whoever owns reporting overall. A dispute older than a
+  week means the metric has no real owner — reassign it.
+
+## Worked example: one entry, one dispute, one correction
+
+Entry before the dispute:
+
+> **Metric: Monthly Active Accounts (MAA)**
+> - Owner: Dana (RevOps)
+> - Formula: count of distinct accounts with >= 1 qualifying session in
+>   the calendar month. Qualifying session = any logged-in session with
+>   >= 1 meaningful action (not just a page load).
+> - Source: product analytics, `sessions` table, monthly rollup job.
+> - Edge cases:
+>   - 2025-11-04: internal/employee accounts excluded (domain match on
+>     company email). Raised by finance during board prep.
+
+The dispute: growth reports MAA = 412; finance computes 397 from the same
+dashboard a day later. Investigation shows growth pulled mid-month with a
+trailing-30-day window; finance pulled calendar month.
+
+Resolution by the owner (Dana, within the 2-day SLA): calendar month is
+the definition; trailing-30-day gets its own name (`MAA (rolling 30d)`)
+if growth wants it. Per the correction rule, BOTH fields update — the
+formula is rewritten so the ambiguity can't recur, and the edge case
+records why:
+
+> - Formula (updated): count of distinct accounts with >= 1 qualifying
+>   session in the **calendar month — never a trailing/rolling window**.
+>   Qualifying session = any logged-in session with >= 1 meaningful
+>   action (not just a page load).
+> - Edge cases (new entry):
+>   - 2026-01-12: MAA is CALENDAR month, not trailing 30 days. A rolling
+>     variant must be reported as `MAA (rolling 30d)`, never as MAA.
+>     Raised by finance/growth discrepancy (412 vs 397).
+
+Both numbers were "right". The dictionary's job was to make sure only one
+of them gets to be called MAA — permanently. An edge-case bullet without
+the matching formula update is half a correction: the next person who
+reads only the formula makes the same mistake.
+
+## Validation (definition of done)
+
+The dictionary is healthy only if ALL of these hold:
+1. Every metric in any recurring report (board deck, weekly digest,
+   dashboard) has a complete entry — spot-check by sampling 5 reported
+   metrics and finding their entries in under a minute each.
+2. Zero entries missing any of the four fields. Incomplete entries are
+   drafts and are listed separately, not mixed in.
+3. Every entry has a `last-verified` date within 180 days, or carries a
+   stale flag.
+4. The edge-cases lists are growing. A dictionary where no entry gained
+   an edge case in the last quarter isn't clean — it's unused. Real
+   reporting generates disputes; if none are landing in the dictionary,
+   they're being resolved verbally and lost.
+
+## Adapting this to your company
+
+The dictionary can live anywhere searchable — a wiki, a doc, a repo. The
+tool is swappable; the four fields, single-owner arbitration, the
+corrections-become-definitions rule, and the no-entry-no-reporting
+forcing function are not. Start with the 10 metrics in your investor
+update — those are the ones a dispute will eventually embarrass you on.

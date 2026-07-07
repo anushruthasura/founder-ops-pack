@@ -1,7 +1,7 @@
 # Founder Ops Pack
 
-**Skills and agents for founders and operators — every item the sanitized
-version of a real production system, or explicitly seeded from one.**
+**44 skills + 12 agents written from our own production systems, plus a
+curated collection of the best community skills (landing through launch week).**
 
 There are plenty of skill packs out there with hundreds of entries. Most are
 generated in bulk, and read like it. This pack takes the opposite bet: fewer
@@ -48,45 +48,54 @@ natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
 
 ### Skills
 
-| Skill | What it replaces / encodes | Who it's for | Tier |
-|---|---|---|---|
-| `todo-reconciler` | The chief-of-staff-grade task list that stays true to reality | Everyone | L |
-| `meeting-prep-brief` | Pre-meeting research an EA or chief of staff does | Everyone | L |
-| `channel-signal-digest` | Reading every channel so you don't have to | Everyone | L |
-| `deal-memory` | Deal-state tracking a RevOps analyst maintains | Sales / GTM | L |
-| `call-to-memory` | Post-call notes that land in durable account memory | Sales / GTM, CS | L |
-| `account-page-maintainer` | Account-plan upkeep with graded qualification audits | Sales / GTM | L |
-| `cold-email-sequencer` | Outbound sequence writing | Sales / GTM | L |
-| `outbound-reply-triage` | SDR management of the reply inbox | Sales / GTM | L |
-| `lifecycle-email-orchestrator` | Lifecycle/onboarding email operations (the send-ledger rule) | Founder, CS, growth | L |
-| `engagement-health-classifier` | CSM book-of-business health review | Customer success | L |
-| `monthly-close-runbook` | Bookkeeper / controller month-end close | Finance | L |
-| `weekly-metrics-digest` | Analyst weekly reporting | Founder, RevOps | L |
-| `voice-of-customer-synthesizer` | Customer/competitive intel synthesis | Product, GTM | L |
-| `launch-command-center` | Launch program management | Anyone launching | L |
-| `rfp-security-questionnaire` | Security-questionnaire fire drills | Sales engineering | L |
-| `metric-dictionary` | The single source of truth for what your numbers mean | Everyone | M |
-| `decision-memo` | Structured decisions: options, reversibility class, decide-by date | Founder, exec | M |
-| `sop-runbook-writer` | Process documentation that stays alive (last-verified dates) | Ops | M |
-| `investor-update-writer` | Investor-update ghostwriting (consistent MoM table, lowlights first) | Founder | M |
-| `board-meeting-pack` | Board prep: 72h pre-read rule, narrative-first, decision log | Founder | M |
-| `fundraise-pipeline` | Fundraise CRM discipline: stages, pass-reason taxonomy, parallel-not-serial | Founder | M |
-| `okr-quarterly-planning` | Quarterly planning: KR quality bar, 3-objective cap | Founder, exec | M |
-| `runway-scenario-model` | Fractional-CFO scenario planning: base/bear/bull, triggers pre-committed | Founder, finance | M |
-| `interview-debrief-scorecard` | Structured debriefs: confirmed evidence vs vibes, independent scoring | Hiring managers | M |
-| `prd-one-pager` | Problem-first specs with mandatory non-goals | Product | M |
-| `vendor-stack-audit` | SaaS renewal calendar, 90/60/30 negotiation windows, seat utilization | Ops, finance | M |
-| `case-study-extractor` | Transcript-to-case-study drafting with a quote-integrity rule | Marketing, GTM | M |
-| `delegation-brief` | Handoffs (to humans or AI agents) that don't boomerang | Everyone | S |
-| `inbox-triage` | 4-decision inbox discipline + a waiting-on ledger | Everyone | S |
-| `crisp-status-update` | Status updates people actually read: headline first, asks before context | Everyone | S |
-| `weekly-review-reset` | The weekly review, timed so you trust the output | Everyone | S |
-| `feedback-sbi` | Situation-Behavior-Impact feedback | Managers | S |
-| `1on1-operating-system` | 1:1s with memory | Managers | S |
-| `new-hire-30-60-90` | Onboarding plans with checkable milestones | Managers | S |
-| `bug-sev-triage` | Severity x frequency matrix with an SLA per severity | Product / eng | S |
-| `contract-first-pass` | Contract read-through checklist — prep for counsel, not legal advice | Founder, ops | S |
-| `crm-hygiene` | Required fields and stage-exit criteria | Sales / GTM | S |
+| Skill | What it replaces / encodes | Who it's for | Tier | Source |
+|---|---|---|---|---|
+| `todo-reconciler` | The chief-of-staff-grade task list that stays true to reality | Everyone | L | ours (production) |
+| `meeting-prep-brief` | Pre-meeting research an EA or chief of staff does | Everyone | L | ours (production) |
+| `channel-signal-digest` | Reading every channel so you don't have to | Everyone | L | ours (production) |
+| `deal-memory` | Deal-state tracking a RevOps analyst maintains | Sales / GTM | L | ours (production) |
+| `call-to-memory` | Post-call notes that land in durable account memory | Sales / GTM, CS | L | ours (production) |
+| `account-page-maintainer` | Account-plan upkeep with graded qualification audits | Sales / GTM | L | ours (production) |
+| `cold-email-sequencer` | Outbound sequence writing | Sales / GTM | L | ours (production) |
+| `outbound-reply-triage` | SDR management of the reply inbox | Sales / GTM | L | ours (production) |
+| `lifecycle-email-orchestrator` | Lifecycle/onboarding email operations (the send-ledger rule) | Founder, CS, growth | L | ours (production) |
+| `engagement-health-classifier` | CSM book-of-business health review | Customer success | L | ours (production) |
+| `monthly-close-runbook` | Bookkeeper / controller month-end close | Finance | L | ours (production) |
+| `weekly-metrics-digest` | Analyst weekly reporting | Founder, RevOps | L | ours (production) |
+| `voice-of-customer-synthesizer` | Customer/competitive intel synthesis | Product, GTM | L | ours (production) |
+| `launch-command-center` | Launch program management | Anyone launching | L | ours (production) |
+| `rfp-security-questionnaire` | Security-questionnaire fire drills | Sales engineering | L | ours (production) |
+| **Wiki Seeds — your company's shared brain** |
+| `team-wiki-starter` | Tribal knowledge about who does what | Everyone | M | ours (production) |
+| `customer-wiki-starter` | Account context living in one seller's head | Founder, sales, CS | M | ours (production) |
+| `product-wiki-starter` | Undocumented design decisions and their why | Product, eng | M | ours (production) |
+| `metric-dictionary` | The single source of truth for what your numbers mean | Everyone | M | ours (production) |
+| `decision-driven-dataviz` | Chart-junk dashboards nobody acts on | Anyone reporting numbers | M | ours (production) |
+| `decision-memo` | Structured decisions: options, reversibility class, decide-by date | Founder, exec | M | ours (production) |
+| `sop-runbook-writer` | Process documentation that stays alive (last-verified dates) | Ops | M | ours (production) |
+| `investor-update-writer` | Investor-update ghostwriting (consistent MoM table, lowlights first) | Founder | M | ours (production) |
+| `board-meeting-pack` | Board prep: 72h pre-read rule, narrative-first, decision log | Founder | M | ours (production) |
+| `fundraise-pipeline` | Fundraise CRM discipline: stages, pass-reason taxonomy, parallel-not-serial | Founder | M | ours (production) |
+| `okr-quarterly-planning` | Quarterly planning: KR quality bar, 3-objective cap | Founder, exec | M | ours (production) |
+| `runway-scenario-model` | Fractional-CFO scenario planning: base/bear/bull, triggers pre-committed | Founder, finance | M | ours (production) |
+| `interview-debrief-scorecard` | Structured debriefs: confirmed evidence vs vibes, independent scoring | Hiring managers | M | ours (production) |
+| `prd-one-pager` | Problem-first specs with mandatory non-goals | Product | M | ours (production) |
+| `vendor-stack-audit` | SaaS renewal calendar, 90/60/30 negotiation windows, seat utilization | Ops, finance | M | ours (production) |
+| `case-study-extractor` | Transcript-to-case-study drafting with a quote-integrity rule | Marketing, GTM | M | ours (production) |
+| `delegation-brief` | Handoffs (to humans or AI agents) that don't boomerang | Everyone | S | ours (production) |
+| **Personal ops** (organize and prepare, never advise) |
+| `personal-monthly-close` | Personal-finance chaos | Everyone | S | ours (production) |
+| `tax-doc-organizer` | Shoebox of receipts in April | Everyone | S | ours (production) |
+| `doctor-visit-prep` | Forgetting your symptoms in the exam room | Everyone | S | ours (production) |
+| `inbox-triage` | 4-decision inbox discipline + a waiting-on ledger | Everyone | S | ours (production) |
+| `crisp-status-update` | Status updates people actually read: headline first, asks before context | Everyone | S | ours (production) |
+| `weekly-review-reset` | The weekly review, timed so you trust the output | Everyone | S | ours (production) |
+| `feedback-sbi` | Situation-Behavior-Impact feedback | Managers | S | ours (production) |
+| `1on1-operating-system` | 1:1s with memory | Managers | S | ours (production) |
+| `new-hire-30-60-90` | Onboarding plans with checkable milestones | Managers | S | ours (production) |
+| `bug-sev-triage` | Severity x frequency matrix with an SLA per severity | Product / eng | S | ours (production) |
+| `contract-first-pass` | Contract read-through checklist — prep for counsel, not legal advice | Founder, ops | S | ours (production) |
+| `crm-hygiene` | Required fields and stage-exit criteria | Sales / GTM | S | ours (production) |
 
 ### Agents
 
@@ -124,6 +133,21 @@ natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
   `sop-runbook-writer`. Agent: `product-ops-analyst`.
 - **People** → `interview-debrief-scorecard`, `feedback-sbi`,
   `1on1-operating-system`, `new-hire-30-60-90`. Agent: `people-ops-partner`.
+
+## Curated collection
+
+In addition to the skills we've built from our own production systems, we
+also curate the best community-built skills. Selection bar: we only include
+skills we would run ourselves.
+
+**Licensing protocol:**
+- Permissively-licensed skills (MIT, Apache, CC-BY) are vendored into
+  `curated/` with the original LICENSE file and an ATTRIBUTION note (author,
+  repo, license). These appear in the index with `Source = curated from
+  [author]`.
+- Restrictively-licensed or unlicensed skills are never copied. Instead,
+  they're linked in `CURATED.md` with context on why they're worth using.
+  The link is the curation.
 
 ## Quality bar
 
