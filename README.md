@@ -1,7 +1,7 @@
 # Founder Ops Pack
 
-**44 skills + 12 agents written from our own production systems, plus a
-curated collection of the best community skills (landing through launch week).**
+**44 skills + 12 agents written from our own production systems, plus 13
+curated skills from the community, with attribution.**
 
 There are plenty of skill packs out there with hundreds of entries. Most are
 generated in bulk, and read like it. This pack takes the opposite bet: fewer
@@ -143,11 +143,29 @@ skills we would run ourselves.
 **Licensing protocol:**
 - Permissively-licensed skills (MIT, Apache, CC-BY) are vendored into
   `curated/` with the original LICENSE file and an ATTRIBUTION note (author,
-  repo, license). These appear in the index with `Source = curated from
+  repo, license). These appear in the index below with `Source = curated from
   [author]`.
 - Restrictively-licensed or unlicensed skills are never copied. Instead,
-  they're linked in `CURATED.md` with context on why they're worth using.
-  The link is the curation.
+  they're linked in [CURATED.md](CURATED.md) with context on why they're worth
+  using. The link is the curation.
+
+### Curated Skills (Vendored with Attribution)
+
+| Skill | What it replaces / encodes | Who it's for | Tier | Source |
+|---|---|---|---|---|
+| `seo-audit` | SEO health check with concrete diagnostics | Marketing, growth | curated | curated from coreyhaines31 |
+| `pricing` | SaaS pricing strategy (packaging, metrics, tiers) | Founder, product | curated | curated from coreyhaines31 |
+| `copywriting` | Conversion copywriting for landing pages | Marketing, growth | curated | curated from coreyhaines31 |
+| `cro` | Conversion rate optimization audits | Marketing, growth | curated | curated from coreyhaines31 |
+| `runway-calculator` | Startup runway modeling and burn analysis | Founder, finance | curated | curated from iamfiscus |
+| `cash-flow-forecast` | Cash flow forecasting discipline | Founder, finance | curated | curated from iamfiscus |
+| `client-profitability` | Client/account profitability analysis | Finance, services | curated | curated from iamfiscus |
+| `brainstorming` | Structured brainstorming frameworks | Everyone | curated | curated from obra |
+| `writing-plans` | Plan-writing discipline for agent work | Everyone | curated | curated from obra |
+| `retro` | Team retrospective facilitation | Founder, managers | curated | curated from garrytan |
+| `office-hours` | Office hours operating system | Managers, advisors | curated | curated from garrytan |
+| `experiment-design-kit` | Growth experiment design with guardrails | Growth, product | curated | curated from gtmagents |
+| `launch-tiering` | Product launch tiering framework | Product, GTM | curated | curated from gtmagents |
 
 ## Quality bar
 
