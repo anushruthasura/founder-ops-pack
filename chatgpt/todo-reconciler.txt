@@ -1,0 +1,105 @@
+# Todo Reconciler
+
+Most task lists die the same way: items get added faithfully and removed
+never, because **most todos resolve out-of-band** — you answer the email,
+the decision happens in a meeting, someone else ships the fix. An
+append-only list drifts from reality within days, you stop trusting it,
+and you stop looking at it.
+
+The fix is architectural, not motivational: **reconcile, don't append.**
+
+## Rule 1: Every refresh re-reads the sources
+
+On every refresh, re-read the actual source systems — inbox, chat channels,
+meeting notes, ticket tracker — and re-derive the list:
+
+- An open item whose underlying thread got a reply from you → **auto-close**.
+- An item whose deliverable shipped (PR merged, doc sent, invite accepted)
+  → **auto-close**, with a one-line note of the evidence.
+- New actionable things found in sources → **surface as new items**.
+- Everything else → carries forward, with its age incremented.
+
+Never trust the list's memory over the sources. The list is a *view* over
+the sources, not a database of record.
+
+## Rule 2: Group items into Situations, and re-judge at the Situation level
+
+A **Situation** is an entity-anchored group — "the Acme renewal", "hiring
+the ops lead", "the Q3 board meeting" — whose truth is spread across email
+AND chat AND meeting notes AND documents at once.
+
+Reconcile per Situation, not per item, because **a decision landing in one
+source obsoletes items sourced from another.** If the renewal call
+transcript says "they signed", the todo that came from an email thread
+("chase Acme signature") is dead — even though nothing in email says so.
+Item-level reconciliation can never catch this; Situation-level re-judging
+catches it every time.
+
+Practical Situation sizing: 5–15 active Situations. More than ~20 means
+you're creating a Situation per item (pointless); fewer than 3 means
+they're too broad to re-judge in one look.
+
+## Rule 3: Staleness is itself a triage trigger
+
+Age isn't decoration — it forces decisions:
+
+- Item untouched **7 days**: the refresh flags it with an explicit
+  question: still real?
+- Item untouched **14 days**: it must be actively dispositioned —
+  **keep** (with a reason written down), **dismiss** (consciously not
+  doing it), or **done** (it resolved and reconciliation missed the
+  evidence — also note WHY it was missed, that's a source gap).
+- Nothing lives past 14 days undecided. An item you refuse to decide on
+  for two weeks is not a task, it's guilt. Dismiss is a first-class
+  outcome, not a failure.
+
+## Rule 4: Time the full reconcile so the list is trustworthy at day start
+
+Two refresh cadences:
+- **Light refresh** (hourly or on-demand): incremental — new items in,
+  obvious completions out.
+- **Full reconcile** (once daily, BEFORE the workday — e.g. 6am): re-read
+  everything, re-judge every Situation, apply staleness triage.
+
+The full reconcile runs before the day starts for one reason: the list's
+value is entirely a function of whether you trust it at 8am. A list
+reconciled at 6am gets used; a list reconciled at noon gets second-guessed
+all morning.
+
+## Worked example: one Situation through a reconcile
+
+Situation: **"Q3 vendor contract renewal"** (anchored on vendor: Meridian).
+Items before the 6am reconcile:
+1. "Reply to Meridian pricing email" (from email, 3 days old)
+2. "Get legal read on liability clause" (from chat, 9 days old — flagged)
+3. "Schedule renewal call" (from meeting notes, 1 day old)
+
+Reconcile re-reads sources and finds: yesterday's leadership meeting
+transcript contains "we're consolidating vendors — Meridian isn't making
+the cut."
+
+Result: the WHOLE Situation re-judges to wind-down. Item 1 rewrites to
+"send Meridian a decline note", items 2 and 3 auto-close as obsolete
+(evidence: leadership meeting decision), and the Situation gets a 7-day
+countdown to archive. An item-level reconciler would have kept all three
+alive — nothing in email or chat said anything changed.
+
+## Validation (definition of done for a refresh)
+
+A refresh is correct only if:
+1. Every auto-closed item has one line of evidence (the reply, the merge,
+   the transcript quote) — auto-close without evidence is deletion.
+2. Every item still open after the refresh exists in at least one source —
+   orphaned items (source deleted/archived) get flagged, not silently kept.
+3. Every item past its staleness threshold carries an explicit disposition
+   or a today-dated flag. Zero silent 14-day-old items.
+4. The refresh reports its own numbers: N found, N closed, N new,
+   N flagged. If closed = 0 across several refreshes, reconciliation is
+   broken (real life always closes items out-of-band) — treat it as a bug
+   in source coverage, not as an unusually diligent week.
+
+## Adapting this to your stack
+
+Sources are swappable: any inbox, any chat tool, any notes system, any
+ticket tracker. The four rules are not: re-read sources, re-judge per
+Situation, staleness forces triage, full reconcile before the day starts.
