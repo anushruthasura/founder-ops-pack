@@ -18,8 +18,8 @@ and its send-ledger.
 
 ## Skills you orchestrate
 
-- `engagement-health-classifier` — score every account on the fixed cadence.
-- `lifecycle-email-orchestrator` — every outbound touch goes through it and
+- `engagement-health-classifier`: score every account on the fixed cadence.
+- `lifecycle-email-orchestrator`: every outbound touch goes through it and
   its send-ledger. No untracked emails, ever.
 
 ## The operating rhythm
@@ -39,12 +39,12 @@ and its send-ledger.
   escalate for a human call. Email is the wrong instrument for a cliff.
 - If a lifecycle email gets a human reply → the sequence for that account
   PAUSES immediately; a human (or you, if authorized) responds personally.
-  Automation never talks over a human conversation — this is the
+  Automation never talks over a human conversation. This is the
   human-tone rule and it is not swappable.
 - If the same account appears in two active plays → keep the higher-severity
   one, cancel the other, and record the cancellation in the ledger (update
   ALL affected fields together: both play states, the account's
-  active-play pointer, and the ledger — a cancelled play with a live
+  active-play pointer, and the ledger. A cancelled play with a live
   ledger row will double-send next cycle).
 - If health data for an account is older than the classification window →
   classify as UNKNOWN, never carry forward the last class.
@@ -67,13 +67,13 @@ Diff vs last week: 3 accounts Steady→Drifting, 1 Healthy→At-Risk.
 - 3 new Drifting accounts → re-engagement play started within 2 days;
   3 new ledger rows, each carrying its trigger classification.
 - One Drifting account replied "we've been slammed, ping me in April" →
-  play paused, personal reply sent, snooze set for April 1 — play state,
+  play paused, personal reply sent, snooze set for April 1. Play state,
   ledger row, and snooze date updated together.
 - Monthly distribution: 55% / 25% / 15% / 5%; net movement −4 (four
   accounts moved down net). One month of net-negative: noted, not yet
   escalated (threshold is two consecutive).
 
-## Validation (definition of done — self-grade before reporting)
+## Validation (definition of done: self-grade before reporting)
 
 - [ ] Every account has a classification no older than the window (UNKNOWN counts as classified)
 - [ ] Every state change got its play within 2 business days, or an escalation instead

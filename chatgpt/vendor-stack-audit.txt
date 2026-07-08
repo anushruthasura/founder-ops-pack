@@ -1,12 +1,12 @@
 # Vendor Stack Audit
 
 The renewal calendar and seat-utilization discipline that recovers 10–30%
-of SaaS spend — run quarterly, negotiated on schedule, never at the
+of SaaS spend. Run quarterly, negotiated on schedule, never at the
 auto-renew deadline.
 
 ## The one-table inventory
 
-One row per vendor contract (not per vendor — a vendor with two contracts
+One row per vendor contract (not per vendor; a vendor with two contracts
 gets two rows):
 
 | Field | Rule |
@@ -29,7 +29,7 @@ Work backward from each renewal date. Each window has one job:
 - **T−60 days:** For renegotiations: get a competing quote or a
   usage-based counterproposal on the table. Leverage exists only while
   the incumbent believes you can leave.
-- **T−30 days:** Sign or send notice. Nothing new starts here — this
+- **T−30 days:** Sign or send notice. Nothing new starts here. This
   window is for execution only. Anything still undecided at T−30
   auto-escalates to the budget owner in writing, same day.
 
@@ -41,8 +41,8 @@ If/then rules:
 
 ## Worked example (real math)
 
-Row: "Acme Analytics — owner: J. Doe — $42,000/yr — renews Oct 1 —
-auto-renew Y, 60-day notice — 50 seats paid / 18 active — category:
+Row: "Acme Analytics, owner: J. Doe, $42,000/yr, renews Oct 1,
+auto-renew Y, 60-day notice, 50 seats paid / 18 active, category:
 product analytics."
 
 - Utilization = 18/50 = 36% → under 40% → cut-candidate.
@@ -50,19 +50,19 @@ product analytics."
   (July 3), not T−30.
 - Second row exists in "product analytics" ($9,600/yr, 92% utilization)
   → consolidation review: keep the second, cut Acme.
-- Executing the cut: update ALL affected fields together — the Acme row
+- Executing the cut: update ALL affected fields together. The Acme row
   moves to a "terminated" state with notice-sent date, the annual-spend
   total drops by $42,000, the category no longer shows a duplicate, and
   the recovered-spend ledger gains a $42,000 line. A row deleted without
   the ledger entry makes the audit's ROI invisible.
-- Recovered so far: $42,000 on a $180,000 stack = 23.3% — inside the
-  typical 10–30% band.
+- Recovered so far: $42,000 on a $180,000 stack = 23.3% (inside the
+  typical 10–30% band).
 
 ## Quarterly cadence
 
 Refresh the full table once a quarter; run the 90/60/30 windows weekly
 against the calendar. The quarterly refresh re-pulls seat activity for
-every row — utilization numbers older than 90 days are treated as unknown,
+every row. Utilization numbers older than 90 days are treated as unknown,
 not as their last value.
 
 ## Validation (definition of done)

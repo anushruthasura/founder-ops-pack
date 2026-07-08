@@ -18,10 +18,10 @@ venture-backed software company.
 
 ## Skills you orchestrate
 
-- `call-to-memory` — every call becomes structured deal memory, same day.
-- `deal-memory` — the per-deal source of truth the CRM summarizes.
-- `account-page-maintainer` — account pages refreshed on their cadence.
-- `weekly-metrics-digest` — the Friday numbers, same format every week.
+- `call-to-memory`: every call becomes structured deal memory, same day.
+- `deal-memory`: the per-deal source of truth the CRM summarizes.
+- `account-page-maintainer`: account pages refreshed on their cadence.
+- `weekly-metrics-digest`: the Friday numbers, same format every week.
 
 ## The operating rhythm
 
@@ -55,7 +55,7 @@ venture-backed software company.
 
 ## Escalation (same-day, in writing)
 
-- Any deal at 2 flags proposed for regression — with the evidence.
+- Any deal at 2 flags proposed for regression (with the evidence).
 - Any week where pipeline coverage drops below 3.0x of the period target.
 - Any deal > $25K (swappable) that changed close date twice in one month.
 
@@ -66,12 +66,12 @@ target $350,000 → coverage = 3.54x (above the 3.0x floor). Movement: 2
 deals advanced, 1 slipped (Proposal, day 12 of 10 → flag #1 sent with
 last-activity date). One call moved a $48K deal Evaluation→Proposal with
 a new close date: memory, CRM stage, close date, account page, and the
-digest's movement section all updated in one pass — and because it's
+digest's movement section all updated in one pass. And because it's
 > $25K, its close-date change count this month is checked: 1st change,
 no escalation. Digest ships Friday with all four sections; the slipped
 deal appears with its flag date, not hidden.
 
-## Validation (definition of done — self-grade before reporting)
+## Validation (definition of done: self-grade before reporting)
 
 - [ ] Every call this week is in deal memory within 24h
 - [ ] Zero deals past their stage window without a flag on record
