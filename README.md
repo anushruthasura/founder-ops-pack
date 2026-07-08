@@ -1,29 +1,28 @@
 # Founder Ops Pack
 
-**44 skills + 12 agents written from our own production systems, plus 13
-curated skills from the community, with attribution.**
+**26 skills and 6 agents in the repo today, written from systems we run
+daily. 13 curated community skills, vendored with attribution. Growing to
+44 skills and 12 agents through launch week.**
 
-There are plenty of skill packs out there with hundreds of entries. Most are
-generated in bulk, and read like it. This pack takes the opposite bet: fewer
-items, and every one of them comes from a system in daily production use at a
-venture-backed software company — the actual close runbook, the actual task
-reconciler, the actual outbound engine — sanitized for general use. That is
-the build rule for this repo: **nothing here was generated from scratch.**
-Skills carry the specific numbers, thresholds, and escalation rules of the
-originals; the parameters are visibly swappable, the discipline is not.
+Most skill packs ship hundreds of bulk-generated entries. We wrote ours by
+sanitizing systems we run in production at a venture-backed software
+company. The close runbook is our close runbook. The task reconciler is the
+one that runs every morning. Nothing here was generated from scratch. Each
+skill keeps the specific numbers, thresholds, and escalation rules of the
+original. Swap them for your own.
 
-Works in Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and any
-Agent-Skills-compatible tool. ChatGPT users: see `chatgpt/` for a paste-ready
-text twin of every skill. Install instructions: [INSTALL.md](INSTALL.md).
+Works in Claude Code, Codex, Cursor, PromptQL, Gemini CLI, GitHub Copilot,
+and any tool that reads the Agent Skills format. ChatGPT users: `chatgpt/`
+has a paste-ready text twin of every skill. Install steps for every tool:
+[INSTALL.md](INSTALL.md).
 
-> **Status:** the pack lands in waves through launch week — flagships first.
-> Everything in the index below ships; if a skill isn't in `skills/` yet,
-> it's days away. Watch the repo.
+> **Status:** 26 of 44 skills and 6 of 12 agents are in the repo today. The
+> rest land in waves through launch week. Everything in the index below
+> ships. If it isn't in `skills/` yet, it's days away. Watch the repo.
 
 ## What this replaces
 
-Teams pay real money for the work these skills encode. Aggregate across
-categories, a lean team runs into six or seven figures a year:
+A lean team pays six or seven figures a year for the work in this table:
 
 | You currently pay for | Typical cost | Skills / agents in this pack |
 |---|---|---|
@@ -37,14 +36,14 @@ categories, a lean team runs into six or seven figures a year:
 | Sales engineering questionnaire time | days per enterprise deal | `rfp-security-questionnaire` |
 | Launch / program management | agency retainers | `launch-command-center`, `channel-signal-digest` |
 
-No line above is claimed lightly: every skill in this pack is the sanitized
-version of a system in daily production use, or explicitly seeded from one.
+Every skill in the table is sanitized from a system in daily production
+use, or seeded from one.
 
 ## The full index
 
 Tiers: **L** = flagship (120-180 lines, ships templates in `assets/` where
-natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
-(40-70 lines, one sharp pattern — small but never thin).
+natural). **M** = standard (80-120 lines, full quality bar). **S** = utility
+(40-70 lines, one pattern).
 
 ### Skills
 
@@ -65,7 +64,7 @@ natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
 | `voice-of-customer-synthesizer` | Customer/competitive intel synthesis | Product, GTM | L | ours (production) |
 | `launch-command-center` | Launch program management | Anyone launching | L | ours (production) |
 | `rfp-security-questionnaire` | Security-questionnaire fire drills | Sales engineering | L | ours (production) |
-| **Wiki Seeds — your company's shared brain** |
+| **Wiki seeds** (starter pages for the team, customer, and product wikis) |
 | `team-wiki-starter` | Tribal knowledge about who does what | Everyone | M | ours (production) |
 | `customer-wiki-starter` | Account context living in one seller's head | Founder, sales, CS | M | ours (production) |
 | `product-wiki-starter` | Undocumented design decisions and their why | Product, eng | M | ours (production) |
@@ -94,15 +93,16 @@ natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
 | `1on1-operating-system` | 1:1s with memory | Managers | S | ours (production) |
 | `new-hire-30-60-90` | Onboarding plans with checkable milestones | Managers | S | ours (production) |
 | `bug-sev-triage` | Severity x frequency matrix with an SLA per severity | Product / eng | S | ours (production) |
-| `contract-first-pass` | Contract read-through checklist — prep for counsel, not legal advice | Founder, ops | S | ours (production) |
+| `contract-first-pass` | Contract read-through checklist. Prep for counsel, not legal advice | Founder, ops | S | ours (production) |
 | `crm-hygiene` | Required fields and stage-exit criteria | Sales / GTM | S | ours (production) |
 
 ### Agents
 
-Agent playbooks under `agents/` — personas that orchestrate the skills for
-role-level delegation ("act as my fractional CFO"). Same quality bar:
-operating rhythm, if/then rules, escalation logic, a worked example with
-real math, and a self-gradable definition of done.
+Agent playbooks live under `agents/`. Each one orchestrates a set of skills
+for a role ("act as my fractional CFO") and carries the same required
+sections as a skill: operating rhythm, if/then rules, escalation logic, a
+worked example with real math, and a definition of done the agent can grade
+itself against.
 
 | Agent | What it replaces | Skills it orchestrates |
 |---|---|---|
@@ -113,29 +113,29 @@ real math, and a self-gradable definition of done.
 | `fractional-cfo-lite` | Fractional CFO core: the close + the runway model ($8K-$22K/mo) | `monthly-close-runbook`, `runway-scenario-model` |
 | `revops-analyst` | RevOps analyst: deal memory, pipeline hygiene, the Friday digest | `deal-memory`, `call-to-memory`, `account-page-maintainer`, `weekly-metrics-digest` |
 
-**Coming — shipping in waves through launch week:**
+**Coming (shipping in waves through launch week):**
 
-- `meeting-copilot` — The full meeting loop: prep, notes, follow-ups, memory
-- `deal-memory-keeper` — Every call and email lands in deal memory
-- `metric-librarian` — Owns the metric dictionary, arbitrates every number dispute
-- `board-prep-partner` — Board pack assembly and the running decision log
-- `product-ops-analyst` — Bug triage, spec hygiene, ship-week operations
-- `people-ops-partner` — Debriefs, feedback, 1:1s, 30-60-90s
+- `meeting-copilot`: prep, notes, follow-ups, and memory for every meeting
+- `deal-memory-keeper`: every call and email lands in deal memory
+- `metric-librarian`: owns the metric dictionary and arbitrates number disputes
+- `board-prep-partner`: board pack assembly and the running decision log
+- `product-ops-analyst`: bug triage, spec hygiene, ship-week operations
+- `people-ops-partner`: debriefs, feedback, 1:1s, 30-60-90s
 
 ## Start here, by role
 
 - **Founder** → `todo-reconciler`, `decision-memo`, `metric-dictionary`,
   `investor-update-writer`.
 - **Team of one (founder, consultant, chief of staff)** → `todo-reconciler`
-  (start here, it changes your day), `meeting-prep-brief`, `inbox-triage`,
+  (start here), `meeting-prep-brief`, `inbox-triage`,
   `channel-signal-digest`, `lifecycle-email-orchestrator`.
 - **Sales / GTM** → `deal-memory` + `call-to-memory`, then
   `cold-email-sequencer` + `outbound-reply-triage`, kept honest by
   `crm-hygiene`.
 - **Finance** → `monthly-close-runbook`, then `runway-scenario-model` and `vendor-stack-audit`.
 - **Customer success** → `engagement-health-classifier` +
-  `lifecycle-email-orchestrator` (mind the send-ledger rule — it's the
-  single most valuable idea in the pack), `case-study-extractor`.
+  `lifecycle-email-orchestrator` (mind the send-ledger rule),
+  `case-study-extractor`.
 - **Product / ops** → `prd-one-pager`, `bug-sev-triage`,
   `sop-runbook-writer`.
 - **People** → `interview-debrief-scorecard`, `feedback-sbi`,
@@ -143,9 +143,8 @@ real math, and a self-gradable definition of done.
 
 ## Curated collection
 
-In addition to the skills we've built from our own production systems, we
-also curate the best community-built skills. Selection bar: we only include
-skills we would run ourselves.
+We also vendor 13 community skills from 5 authors. Selection rule: we only
+include skills we would run ourselves.
 
 **Licensing protocol:**
 - Permissively-licensed skills (MIT, Apache, CC-BY) are vendored into
@@ -158,21 +157,21 @@ skills we would run ourselves.
 
 ### What code ships in curated/ (security note)
 
-Exactly one curated skill ships executable code: `brainstorming` (from obra) —
-four scripts under `curated/obra/brainstorming/scripts/` (`helper.js`,
-`server.cjs`, `start-server.sh`, `stop-server.sh`) that run a **local-only**
-web server for its optional visual companion. We read every line before
-vendoring. What we verified: **zero outbound network calls** anywhere; the
-server binds `127.0.0.1` by default; file writes are confined to its own
-session directory (`/tmp/brainstorm` or an explicit `--project-dir`);
+Exactly one curated skill ships executable code: `brainstorming` (from
+obra). Four scripts under `curated/obra/brainstorming/scripts/`
+(`helper.js`, `server.cjs`, `start-server.sh`, `stop-server.sh`) run a
+local-only web server for its optional visual companion. We read every line
+before vendoring. What we verified: zero outbound network calls anywhere;
+the server binds `127.0.0.1` by default; file writes are confined to its
+own session directory (`/tmp/brainstorm` or an explicit `--project-dir`);
 `child_process` is used only to open your browser, opt-in and via `execFile`
 (no shell); access is token-gated with owner-only file permissions; and the
-stop script refuses to kill processes it can't verify it started. Every other
-curated skill is markdown/JSON only — no executable code.
+stop script refuses to kill processes it can't verify it started. Every
+other curated skill is markdown and JSON only, with no executable code.
 
-Standard skills hygiene still applies: **read the scripts yourself before
-running any skill that ships them** — here or anywhere else. When we pull
-updates from upstream, the code gets re-reviewed before the update lands.
+Read the scripts yourself before running any skill that ships them, here or
+anywhere else. When we pull updates from upstream, we re-review the code
+before the update lands.
 
 ### Curated Skills (Vendored with Attribution)
 
@@ -194,13 +193,13 @@ updates from upstream, the code gets re-reviewed before the update lands.
 
 ## Quality bar
 
-Every skill under `skills/` — the ones we wrote — has: specific numbers and
-thresholds, an if/then decision framework, escalation logic, one worked
-example with real math, and a validation section (definition of done).
-Utility skills are small but sharp — one pattern, still with a number, a
-rule, an example, and a validation step. If anything under `skills/` ever
-reads like generic AI advice, file an issue — that's a bug.
+Every skill under `skills/` (the ones we wrote) has five required sections:
+specific numbers and thresholds, an if/then decision framework, escalation
+logic, one worked example with real math, and a validation section the
+agent can grade itself against. Utility skills are shorter (40-70 lines)
+but still carry a number, a rule, an example, and a validation step. If
+anything under `skills/` reads like generic AI advice, file an issue.
+That's a bug.
 
-Curated skills were selected on the same taste bar — we only include what
-we'd run ourselves — but they are their authors' work. We vouch for the
-selection; the authors own the content.
+Curated skills are their authors' work. We picked them on the same rule (we
+only include what we'd run ourselves) but the authors own the content.
