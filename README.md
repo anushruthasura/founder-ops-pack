@@ -27,13 +27,12 @@ categories, a lean team runs into six or seven figures a year:
 
 | You currently pay for | Typical cost | Skills / agents in this pack |
 |---|---|---|
-| SDR / outbound rep | $85K-$120K/yr fully loaded | `cold-email-sequencer`, `outbound-reply-triage`, agent: `outbound-sdr` |
-| Customer success headcount / tooling | $70K-$120K/yr per CSM | `engagement-health-classifier`, `lifecycle-email-orchestrator`, agent: `customer-success-manager` |
-| Bookkeeper / controller / fractional CFO | $3K-$22K/mo | `monthly-close-runbook`, `runway-scenario-model`, agent: `fractional-cfo-lite` |
-| Executive assistant / chief of staff | $65K-$125K/yr (or $3K-$7.5K/mo fractional) | `todo-reconciler`, `meeting-prep-brief`, agents: `chief-of-staff`, `executive-assistant` |
-| RevOps / sales ops analyst | $26K-$83K/yr interpretation labor | `deal-memory`, `call-to-memory`, `account-page-maintainer`, `weekly-metrics-digest`, agent: `revops-analyst` |
+| SDR / outbound rep | $85K-$120K/yr fully loaded | `cold-email-sequencer`, `outbound-reply-triage` |
+| Customer success headcount / tooling | $70K-$120K/yr per CSM | `engagement-health-classifier`, `lifecycle-email-orchestrator` |
+| Bookkeeper / controller / fractional CFO | $3K-$22K/mo | `monthly-close-runbook` |
+| Executive assistant / chief of staff | $65K-$125K/yr (or $3K-$7.5K/mo fractional) | `todo-reconciler`, `meeting-prep-brief` |
+| RevOps / sales ops analyst | $26K-$83K/yr interpretation labor | `deal-memory`, `call-to-memory`, `account-page-maintainer`, `weekly-metrics-digest` |
 | Competitive intel platform + analyst | $15K-$60K/yr + labor | `voice-of-customer-synthesizer` |
-| Unmanaged SaaS renewals / seat waste | typically 10-30% of SaaS spend recoverable | `vendor-stack-audit` |
 | Sales engineering questionnaire time | days per enterprise deal | `rfp-security-questionnaire` |
 | Launch / program management | agency retainers | `launch-command-center`, `channel-signal-digest` |
 
@@ -77,10 +76,8 @@ natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
 | `board-meeting-pack` | Board prep: 72h pre-read rule, narrative-first, decision log | Founder | M | ours (production) |
 | `fundraise-pipeline` | Fundraise CRM discipline: stages, pass-reason taxonomy, parallel-not-serial | Founder | M | ours (production) |
 | `okr-quarterly-planning` | Quarterly planning: KR quality bar, 3-objective cap | Founder, exec | M | ours (production) |
-| `runway-scenario-model` | Fractional-CFO scenario planning: base/bear/bull, triggers pre-committed | Founder, finance | M | ours (production) |
 | `interview-debrief-scorecard` | Structured debriefs: confirmed evidence vs vibes, independent scoring | Hiring managers | M | ours (production) |
 | `prd-one-pager` | Problem-first specs with mandatory non-goals | Product | M | ours (production) |
-| `vendor-stack-audit` | SaaS renewal calendar, 90/60/30 negotiation windows, seat utilization | Ops, finance | M | ours (production) |
 | `case-study-extractor` | Transcript-to-case-study drafting with a quote-integrity rule | Marketing, GTM | M | ours (production) |
 | `delegation-brief` | Handoffs (to humans or AI agents) that don't boomerang | Everyone | S | ours (production) |
 | **Personal ops** (organize and prepare, never advise) |
@@ -99,40 +96,39 @@ natural), **M** = standard (80-120 lines, full quality bar), **S** = utility
 
 ### Agents
 
-| Agent | What it orchestrates | Who it's for |
-|---|---|---|
-| `chief-of-staff` | Your day: reconcile the list, prep the meetings, digest the channels | Founder, exec |
-| `executive-assistant` | Calendar, follow-ups, logistics, inbox triage | Everyone |
-| `meeting-copilot` | The full meeting loop: prep, notes, follow-ups, memory | Everyone |
-| `outbound-sdr` | Sequences, reply triage, CRM hygiene end-to-end | Sales / GTM |
-| `customer-success-manager` | Health classification and the outreach loop it drives | Customer success |
-| `deal-memory-keeper` | Every call and email lands in deal memory | Sales / GTM |
-| `revops-analyst` | Deal memory, account pages, pipeline and CRM hygiene | Sales / GTM |
-| `fractional-cfo-lite` | Close, scenario models, metrics digests | Founder, finance |
-| `metric-librarian` | Owns the metric dictionary, arbitrates every number dispute | Everyone |
-| `board-prep-partner` | Board pack assembly and the running decision log | Founder |
-| `product-ops-analyst` | Bug triage, spec hygiene, ship-week operations | Product / eng |
-| `people-ops-partner` | Debriefs, feedback, 1:1s, 30-60-90s | Managers |
+**Coming — shipping in waves through launch week:**
+
+- `chief-of-staff` — Your day: reconcile the list, prep the meetings, digest the channels
+- `executive-assistant` — Calendar, follow-ups, logistics, inbox triage
+- `meeting-copilot` — The full meeting loop: prep, notes, follow-ups, memory
+- `outbound-sdr` — Sequences, reply triage, CRM hygiene end-to-end
+- `customer-success-manager` — Health classification and the outreach loop it drives
+- `deal-memory-keeper` — Every call and email lands in deal memory
+- `revops-analyst` — Deal memory, account pages, pipeline and CRM hygiene
+- `fractional-cfo-lite` — Close, scenario models, metrics digests
+- `metric-librarian` — Owns the metric dictionary, arbitrates every number dispute
+- `board-prep-partner` — Board pack assembly and the running decision log
+- `product-ops-analyst` — Bug triage, spec hygiene, ship-week operations
+- `people-ops-partner` — Debriefs, feedback, 1:1s, 30-60-90s
 
 ## Start here, by role
 
 - **Founder** → `todo-reconciler`, `decision-memo`, `metric-dictionary`,
-  `investor-update-writer`, `runway-scenario-model`.
+  `investor-update-writer`.
 - **Team of one (founder, consultant, chief of staff)** → `todo-reconciler`
   (start here, it changes your day), `meeting-prep-brief`, `inbox-triage`,
   `channel-signal-digest`, `lifecycle-email-orchestrator`.
 - **Sales / GTM** → `deal-memory` + `call-to-memory`, then
   `cold-email-sequencer` + `outbound-reply-triage`, kept honest by
-  `crm-hygiene`. Agent: `outbound-sdr`.
-- **Finance** → `monthly-close-runbook`, `runway-scenario-model`,
-  `vendor-stack-audit`. Agent: `fractional-cfo-lite`.
+  `crm-hygiene`.
+- **Finance** → `monthly-close-runbook`.
 - **Customer success** → `engagement-health-classifier` +
   `lifecycle-email-orchestrator` (mind the send-ledger rule — it's the
   single most valuable idea in the pack), `case-study-extractor`.
 - **Product / ops** → `prd-one-pager`, `bug-sev-triage`,
-  `sop-runbook-writer`. Agent: `product-ops-analyst`.
+  `sop-runbook-writer`.
 - **People** → `interview-debrief-scorecard`, `feedback-sbi`,
-  `1on1-operating-system`, `new-hire-30-60-90`. Agent: `people-ops-partner`.
+  `1on1-operating-system`, `new-hire-30-60-90`.
 
 ## Curated collection
 
