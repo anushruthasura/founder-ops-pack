@@ -1,0 +1,64 @@
+# New Hire 30/60/90
+
+The plan is a mutual action plan between manager and hire: named
+outcomes, dated check-ins, and an audit trail where nothing is ever
+deleted, only struck through with a reason.
+
+## The three horizons
+
+- **Day 30, learning:** can they explain the system, the customers, and
+  who owns what? Outcome: a written artifact (their map of the territory)
+  reviewed by the manager. Understanding is verified in writing, not vibes.
+- **Day 60, contributing:** first owned deliverable shipped, small
+  enough to finish, real enough to matter.
+- **Day 90, owning:** an area where they are the named owner and others
+  route to them.
+
+Each horizon: 3-5 outcomes, each with a named verifier. Goals accumulate
+long-term → mid-term → immediate; a day-90 goal appears at day 0 and
+sharpens, it does not materialize at day 75.
+
+## The accounting rules
+
+- Never delete a goal. Changed or dropped goals get struck through with
+  a dated reason. The strike-through history IS the onboarding record.
+- Every row carries a last-updated date.
+- Check-in dates: the soonest next step is always dated tomorrow at the
+  earliest, never today. "Today" items are already late items in denial.
+
+## If/then rules
+
+- If a day-30 outcome slips → adjust days 60/90 in the same edit. A
+  slipped foundation with unmoved later goals is a plan lying to itself.
+- If 2+ outcomes in one horizon get struck → the role's scope was
+  misdrawn; manager rewrites the horizon and says so to the hire.
+- If a check-in is skipped → it is rescheduled within 2 business days,
+  not folded into the next one. Two check-ins of feedback in one sitting
+  overloads exactly the person with the least context.
+
+## Worked example (real math)
+
+Support-lead hire. Day-30 check-in grades 4 outcomes: 3 verified, but
+"shadow 10 customer calls" sits at 6 of 10 because call volume dropped.
+The goal is struck through with the dated reason and replaced by "6
+shadows + 4 recorded-call reviews, by day 40". Updating it means
+updating ALL affected fields together: the strike-through with its
+reason, the replacement row with its new date and verifier, the day-60
+outcome that depended on it ("run 5 calls solo" moves from day 60 to
+day 70), and both last-updated stamps. At day 90 the plan shows 11
+outcomes verified, 2 struck with reasons, and the strike history reads
+as an honest record of the ramp, which is exactly what the 6-month
+review will want.
+
+## Validation (definition of done)
+
+- [ ] Every outcome has a named verifier and a written artifact where applicable
+- [ ] All three horizons populated at day 0, sharpening over time
+- [ ] Zero deletions; every change is a dated strike-through with a reason
+- [ ] Slips cascade to dependent goals in the same edit
+- [ ] Next check-in always dated tomorrow or later
+
+## Adapting this to your company
+
+Swap: the horizon lengths, outcomes per horizon. Keep: named verifiers,
+strike-through accounting, cascading edits, and never-today dating.
