@@ -1,0 +1,63 @@
+# Bug Sev Triage
+
+Severity is defined by user impact, decided once at intake, by
+definition rather than by whoever shouts. The out-of-scope list is what
+keeps the queue honest.
+
+## The out-of-scope list (the secret)
+
+Written down, published, applied at intake. Not bugs: infra blips that
+auto-recovered, config mistakes on the user's side, known platform
+latency within stated bounds, feature requests wearing a bug costume.
+Each gets routed to its actual home, not sev-4ed into a queue where it
+rots. Expect the list to absorb 30-50% of incoming reports.
+
+## Severity definitions and clocks
+
+- **Sev-1:** data loss, security exposure, or all users blocked.
+  Response now, all hands until mitigated, then a written postmortem.
+- **Sev-2:** a core workflow broken with no workaround. Response same
+  business day, fix inside the current cycle.
+- **Sev-3:** broken with a workaround, or a non-core path. Next cycle,
+  batched.
+- **Sev-4:** cosmetic. Fixed opportunistically; auto-closed with a note
+  after 90 days untouched.
+
+## If/then rules
+
+- If a report matches the out-of-scope list → route it out at intake
+  with one line; it never enters the sev queue.
+- If severity is disputed → the definitions decide, not seniority. A
+  workaround existing caps it at sev-3 regardless of who filed it.
+- If the same root cause generates 3+ reports in a week → the cluster
+  escalates one sev level; frequency is impact.
+- If a sev-2 misses its cycle → it is stated in the cycle review by
+  name, with its new date. Silent slips are how sev-2 becomes sev-3
+  culturally.
+
+## Worked example (real math)
+
+Monday intake: 14 reports. Out-of-scope list absorbs 6 (43%, inside the
+30-50% band): 2 config, 3 auto-recovered blips, 1 feature request
+rerouted to the PRD backlog. Remaining 8: one export failure with no
+workaround lands sev-2 with a same-day response; five sev-3s; two
+cosmetic sev-4s. Wednesday, two more export-failure reports arrive,
+same root cause: 3 reports in a week trips the cluster rule, and
+escalating means updating ALL affected fields together: the sev field
+(2 → 1), the response clock (all-hands now), the linked duplicate
+reports pointing at the parent, and the status page note. An escalated
+parent with orphaned duplicates gets triaged twice by two people.
+
+## Validation (definition of done)
+
+- [ ] Out-of-scope list published and applied at intake, absorption rate in band
+- [ ] Every queued bug has a sev assigned by definition, at intake
+- [ ] All sev-1/sev-2 response clocks met or their misses named in review
+- [ ] Duplicate reports linked to a parent; clusters checked weekly
+- [ ] Sev-4s auto-closed at 90 days with notes
+
+## Adapting this to your company
+
+Swap: the clock durations, the 90-day auto-close, the cluster threshold.
+Keep: the out-of-scope list, definition-decided severity, workaround
+caps, and cluster escalation.
