@@ -1,0 +1,79 @@
+# Contract First Pass
+
+The first pass is triage, not judgment. It exists so counsel time (at
+$400-700/hr) is spent on the 5 flagged clauses, not on locating them.
+This skill prepares questions. It never answers them.
+
+## The fixed checklist (every contract, same order)
+
+| Clause | Extract | Flag when |
+|---|---|---|
+| Term | Start, length, renewal type | Initial term > 12 months |
+| Auto-renewal | Notice window and mechanics | Notice > 30 days, or renewal term > initial term |
+| Price escalators | Any % or "then-current pricing" | Uncapped, or > 7%/yr |
+| Liability cap | Cap amount and carve-outs | Uncapped exposure, or cap < fees paid where you carry the risk |
+| Data terms | Ownership, deletion, subprocessors | Vendor claims derived-data rights, or no deletion-on-exit clause |
+| Termination | For-convenience rights, cure periods | Only they can terminate for convenience |
+| Payment | Net terms, late fees | Net < 15, or late fee > 1.5%/mo |
+| Assignment | Change-of-control language | Consent required from only one side |
+
+Every extraction carries its section number. A flag without a pin costs
+counsel ten minutes of scrolling.
+
+## The renewal-trap arithmetic
+
+Auto-renew plus a long notice window is a delayed decision disguised as
+convenience. Always compute the real decision date: renewal date minus
+notice window, then subtract 30 more days for internal review. That date
+goes on the calendar the day the contract is signed.
+
+## If/then rules
+
+- If the contract references an external document ("per the SLA at the
+  URL") → fetch and version-stamp it. Unfetched references are unsigned
+  blank pages.
+- If any single flag involves uncapped liability, IP assignment, or
+  exclusivity → the whole contract escalates to counsel before further
+  negotiation, not after.
+- If the counterparty sends a redline → diff against the last version and
+  first-pass only the changed clauses. Never re-review from scratch; a
+  changed comma hides in a full re-read.
+- If the same vendor's paper flags the same clause twice in a year →
+  push your own template for the next renewal.
+
+## Worked example (real math)
+
+A $36,000/yr platform MSA, 24-month initial term. The pass extracts:
+auto-renewal with 90-day notice (section 11.2), renewal at "then-current
+list pricing" (11.3), liability capped at 6 months of fees (14.1), no
+deletion-on-exit clause in the data addendum. Four flags: term > 12
+months, notice > 30 days, uncapped escalator, missing deletion clause.
+The renewal-trap math: renewal lands June 30, 2028, minus 90 days notice
+is April 1, minus 30 review days puts the real decision date at March 2,
+2028. Logging the contract means updating ALL affected fields together:
+the flag list to counsel with section pins, the calendar entry on
+March 2, the vendor row in the stack audit with the notice window, and
+the budget line noting the uncapped escalator risk. A flagged escalator
+that never reaches the budget file becomes next year's surprise.
+
+## Escalation
+
+Output is always "flags for counsel", ranked by exposure, each with a
+section pin and a one-line why. The three auto-escalate clauses
+(uncapped liability, IP assignment, exclusivity) go to counsel same-day.
+Nothing in the pass output is worded as a recommendation to sign.
+
+## Validation (definition of done)
+
+- [ ] All 8 checklist rows extracted with section numbers
+- [ ] Real decision date computed and on the calendar
+- [ ] Every flag has a section pin and a one-line why
+- [ ] Auto-escalate clauses (if any) sent to counsel same-day
+- [ ] Redlines diffed, only changed clauses re-passed
+- [ ] Output framed as questions for counsel, zero legal conclusions
+
+## Adapting this to your company
+
+Swap: the flag thresholds (12 months, 30 days, 7%), the checklist extras
+for your industry. Keep: fixed order, section pins, the decision-date
+arithmetic, and the counsel-questions-only framing.
