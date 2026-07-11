@@ -1,0 +1,92 @@
+---
+name: sop-runbook-writer
+description: >
+  Turn a recurring process into a runbook with numbered steps, a
+  prep/finalize split around every irreversible action, and per-step
+  verification. Use when the user asks to document a process, write an
+  SOP or runbook, or make a task delegatable to a new hire or an agent.
+license: MIT
+metadata:
+  version: "1.0"
+  tier: M
+  provenance: sanitized from the month-end close program family of a venture-backed software company
+---
+
+# SOP / Runbook Writer
+
+A runbook is tested by handing it to someone who has never done the
+task. If they come back with questions, the questions are the bug list.
+
+## Structure rules
+
+- **One runbook per topic**, not one giant document. A "close the books"
+  binder is unusable; "reconcile payroll" is runnable. Cross-link.
+- **Numbered steps, one action each.** A step with "and" in it is two
+  steps wearing one number.
+- **Every step states its verification**: what you should see when it
+  worked. A step you cannot verify is a hope.
+- **Prep/finalize split**: any step that commits something irreversible
+  (sending, posting, paying, deleting) is split into a prep step that
+  stages the output and a finalize step that a human reviews and fires.
+  The review gate between them is the whole point.
+- **Schedule in business days**, anchored to a trigger event, with a
+  holiday calendar. "Day 2 of close" survives every calendar year;
+  "the 3rd" does not.
+
+## Required header
+
+Owner (a person), trigger (what starts the run), frequency, last-verified
+date, and expected duration. A runbook without a last-verified date is
+archaeology.
+
+## If/then rules
+
+- If a step fails its verification → the runbook names the recovery: fix
+  inline, roll back to step N, or stop and escalate to the owner. No
+  step's failure mode is "figure it out".
+- If a run deviates from the book and it worked anyway → the book is
+  wrong; update it the same day, bumping last-verified.
+- If a runbook goes 2 runs without being followed step-by-step → it has
+  drifted from reality; the next run is executed strictly from the book
+  to regenerate the bug list.
+- If a step's verification cannot be written → the step is too big;
+  split it.
+
+## Worked example (real math)
+
+"Reconcile payroll" runbook, 9 steps, anchored to "payroll provider
+posts the register" with a business-day schedule. Step 6 is the
+irreversible one, posting the journal entry, so it is split: 6a preps
+the entry and stages it with a diff against last month (verification:
+variance under 5% or explained line-by-line), 6b is the human review
+and post (verification: entry number returned by the system). This
+month, 6a's diff shows a 9.2% variance, over the 5% bar. The runbook's
+failure path for 6a says: stop, check new-hire starts in the period.
+Two starts explain $7,400 of the $8,100 variance; the remaining $700 is
+a corrected retro payment, noted inline. 6b fires after review.
+Updating the book for a new edge case means updating ALL affected
+fields together: the step's verification note, the failure path, the
+expected-duration line (this run took 55 minutes against a stated 40),
+and the last-verified date. A runbook that learns silently teaches the
+next runner nothing.
+
+## Escalation
+
+Every runbook names its owner and the escalation contact for a failed
+verification that the recovery step cannot fix. Escalations include the
+step number, what the verification expected, and what appeared instead.
+
+## Validation (definition of done)
+
+- [ ] Header complete: owner, trigger, frequency, last-verified, duration
+- [ ] Every step is one action with a written verification
+- [ ] Every irreversible action has a prep/finalize split with a review gate
+- [ ] Every step names its failure path
+- [ ] Schedule is business-day anchored to a trigger event
+- [ ] A person who never ran the process has run it from the book once
+
+## Adapting this to your company
+
+Swap: the 5% variance bar, the schedule anchors, the header fields.
+Keep: one action per step, verifications everywhere, the prep/finalize
+gate, and the never-ran-it test.
