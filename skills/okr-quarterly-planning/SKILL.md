@@ -1,0 +1,97 @@
+---
+name: okr-quarterly-planning
+description: >
+  Run quarterly OKR planning with defined metrics, a 3x3 cap, owner
+  arbitration for definition disputes, and mid-cycle scoring rules. Use
+  when the user asks to set quarterly goals or OKRs, score last quarter,
+  or fix goals nobody remembers by week 6.
+license: MIT
+metadata:
+  version: "1.0"
+  tier: M
+  provenance: sanitized from the metric dictionary and planning practice of a venture-backed software company
+---
+
+# OKR Quarterly Planning
+
+OKRs fail two ways: metrics nobody defined, and lists nobody can hold in
+their head. The fix for both is arithmetic, not inspiration.
+
+## The 3x3 cap
+
+At most 3 objectives, each with at most 3 key results. A team that
+"needs" 5 objectives has not decided anything; the OKR list is where
+deciding happens. Everything cut goes to an explicit "not this quarter"
+list, published alongside the OKRs, so cut things were visibly cut
+rather than forgotten.
+
+## Key result rules
+
+- Every KR is a number with a defined metric behind it: definition,
+  source, and owner recorded in the metric dictionary before the KR is
+  accepted. An undefined metric is not a KR, it is a vibe.
+- Baseline stated at planning time. "Grow activation to 40%" means
+  nothing without "from 31%".
+- Each KR names one owner. Shared KRs are unowned KRs with extra steps.
+- Targets set so ~70% attainment is expected. A quarter of all-100s
+  means the targets were memos, not goals.
+
+## If/then rules
+
+- If two teams dispute a metric's definition → route to the metric's
+  recorded owner for arbitration. The outcome is an upheld definition or
+  a versioned change, never two teams reporting the same name for
+  different numbers.
+- If a KR's metric definition changes mid-quarter → restate the baseline
+  and target under the new definition in the same edit, with a change
+  log line. Otherwise the KR is ungradeable at quarter end.
+- If a KR is untouched by week 4 check-in (no movement, no plan) → it is
+  renegotiated or dropped at that check-in, not silently carried to a
+  quarter-end 0.1.
+- If an objective's KRs all track green by week 6 → the targets were too
+  soft; note it for next cycle's calibration, do not raise mid-quarter.
+
+## Scoring
+
+Score at week 6 and week 13 on the same 0.0-1.0 scale, from the metric
+sources, not from memory. Week 6 is a forecast, week 13 is a grade.
+Publish both.
+
+## Worked example (real math)
+
+Planning: 7 proposed objectives are cut to 3; the other 4 go on the
+"not this quarter" list with one line each. Objective 2 is "make
+onboarding convert", KR2.1: "signup-to-first-value 31% → 40%". Before
+acceptance, the dictionary check finds growth defines first-value as
+"first successful query" while product uses "first saved report".
+Routed to the metric owner: first-successful-query is upheld, product's
+variant gets its own metric name. Week 6: KR2.1 sits at 34%, scored
+0.33 as forecast (3 points of 9 needed). Week 13: 37%, final score
+0.67, inside the healthy 70% band. Mid-quarter, the definition gained
+an exclusion for internal test accounts, and applying it meant updating
+ALL affected fields together: the dictionary entry version, the KR
+baseline (31% → 30.2% restated), the target note, and the change log.
+A restated baseline with an unrestated target manufactures 0.8 points
+of fake progress.
+
+## Escalation
+
+Definition disputes: metric owner, 2 business days. Cap disputes (a
+team refusing to cut to 3x3): the planning owner decides, and the cut
+list is published either way. Week-6 red KRs with no plan: named in the
+week-6 publication, with the renegotiate-or-drop decision recorded.
+
+## Validation (definition of done)
+
+- [ ] At most 3 objectives x 3 KRs; the cut list is published
+- [ ] Every KR: defined metric in the dictionary, baseline, target, one owner
+- [ ] Week-6 and week-13 scores published from metric sources
+- [ ] Every definition change carries a restated baseline and change-log line
+- [ ] No KR carried past week 4 without movement or a plan
+- [ ] Quarter average lands near 0.7; all-1.0 quarters trigger recalibration
+
+## Adapting this to your company
+
+Swap: the 3x3 cap size, the 70% attainment norm, check-in weeks. Keep:
+dictionary-defined metrics with owners, baselines at planning, owner
+arbitration, and the published cut list.
