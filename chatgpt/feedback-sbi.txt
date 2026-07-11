@@ -1,0 +1,60 @@
+# Feedback (SBI)
+
+Feedback is testimony, not diagnosis. Report what happened and what it
+cost; the recipient owns what it means about them.
+
+## The three parts
+
+1. **Situation:** one specific time and place. "In Tuesday's pricing
+   review" not "lately".
+2. **Behavior:** what was observably said or done, verbatim where
+   possible. If you would not say it with the recording playing, it is
+   interpretation, not behavior. "You said 'this is a waste of time'"
+   qualifies; "you were dismissive" does not.
+3. **Impact:** the concrete effect, with a number or a name. "We lost
+   20 minutes and two people messaged me after" beats "it hurt morale".
+
+## The rules
+
+- Within 48 hours of the event. Week-old feedback is archaeology; the
+  details both parties need are gone.
+- One event per conversation. Three stacked examples is an ambush.
+- Adjective test before delivering: every adjective in the draft gets
+  replaced with the observable it stands on, or cut.
+
+## If/then rules
+
+- If you cannot name the specific situation → you do not have feedback
+  yet, you have a mood. Wait for the next instance.
+- If the behavior sentence contains "always" or "never" → rewrite to the
+  single instance. Patterns are for the third conversation, with dates.
+- If the impact is only "it bothered me" → deliver it as a preference,
+  not as feedback, and say so.
+- If it is a pattern (3+ logged instances) → bring the dated instances,
+  and the conversation is about the pattern, stated as one.
+
+## Worked example (real math)
+
+Draft: "You were unprepared and it derailed the demo." Adjective test:
+"unprepared" stands on what? Rewritten: Situation: "Thursday's demo for
+the Acme renewal." Behavior: "The environment wasn't loaded; you said
+'give me five minutes' and set up while they waited." Impact: "We used
+19 of our 45 minutes on setup, and their VP left before the Q&A."
+Delivered Friday, inside 48 hours. Logging it means updating ALL
+affected fields together: the 1:1 notes gain the SBI entry with its
+date, and the follow-up ("dry-run checklist before customer demos")
+lands on the task list with an owner and next demo's date. A feedback
+conversation that produces no logged follow-up is a vent with structure.
+
+## Validation (definition of done)
+
+- [ ] Situation names one time and place
+- [ ] Behavior is verbatim or observable, zero adjectives
+- [ ] Impact carries a number or a name
+- [ ] Delivered within 48 hours, one event only
+- [ ] Follow-up logged with an owner and a date
+
+## Adapting this to your company
+
+Swap: the 48-hour window, the 3-instance pattern bar. Keep: the
+adjective test, verbatim behavior, and concrete impact.
